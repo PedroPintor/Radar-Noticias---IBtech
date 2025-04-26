@@ -35,62 +35,54 @@ def get_news():
                         'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                     })
         except Exception as e:
-            print(f"Erro ao acessar {url}: {str(e)}")
-
-    # UOL - Sustentabilidade
+            print(f"Erro ao obter notícias do G1: {e}")
+    
+    # UOL - Meio Ambiente
     try:
-        uol_url = 'https://noticias.uol.com.br/meio-ambiente/'
-        response = requests.get(uol_url)
+        response = requests.get('https://noticias.uol.com.br/meio-ambiente/')
         soup = BeautifulSoup(response.text, 'html.parser')
         
-        for item in soup.find_all('div', class_='thumbnails-wrapper', limit=3):
-            title = item.find('h3', class_='thumb-title')
+        for item in soup.find_all('div', class_='thumbnails-item', limit=3):
+            title_tag = item.find('h3')
             link = item.find('a')
-            description = item.find('p', class_='thumb-description')
-            time = item.find('time')
             image = item.find('img')
             
-            if title and link:
+            if title_tag and link:
                 news_list.append({
-                    'title': title.text.strip(),
+                    'title': title_tag.text.strip(),
                     'link': link['href'],
                     'source': 'UOL',
-                    'category': 'Sustentabilidade',
-                    'description': description.text.strip() if description else '',
-                    'date': time.text.strip() if time else '',
+                    'category': 'Meio Ambiente',
+                    'description': '',
+                    'date': '',
                     'image': image['src'] if image else '',
                     'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                 })
     except Exception as e:
-        print(f"Erro ao acessar UOL: {str(e)}")
-
-    # Folha - Sustentabilidade
+        print(f"Erro ao obter notícias do UOL: {e}")
+    
+    # Folha de São Paulo - Ambiente
     try:
-        folha_url = 'https://www1.folha.uol.com.br/ambiente/'
-        response = requests.get(folha_url)
+        response = requests.get('https://www1.folha.uol.com.br/ambiente/')
         soup = BeautifulSoup(response.text, 'html.parser')
         
-        for item in soup.find_all('div', class_='c-headline__content', limit=3):
-            title = item.find('h2', class_='c-headline__title')
+        for item in soup.find_all('div', class_='c-main-headline', limit=3):
+            title_tag = item.find('h2', class_='c-main-headline__title')
             link = item.find('a')
-            description = item.find('p', class_='c-headline__standfirst')
-            time = item.find('time')
-            image = item.find('img')
+            description = item.find('p')
             
-            if title and link:
+            if title_tag and link:
                 news_list.append({
-                    'title': title.text.strip(),
+                    'title': title_tag.text.strip(),
                     'link': link['href'],
                     'source': 'Folha de S.Paulo',
                     'category': 'Ambiente',
                     'description': description.text.strip() if description else '',
-                    'date': time.text.strip() if time else '',
-                    'image': image['src'] if image else '',
+                    'date': '',
+                    'image': '',
                     'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                 })
     except Exception as e:
-        print(f"Erro ao acessar Folha: {str(e)}")
-
-    # Ordenar por timestamp e limitar a 10 notícias
-    news_list.sort(key=lambda x: x['timestamp'], reverse=True)
-    return news_list[:10] 
+        print(f"Erro ao obter notícias da Folha: {e}")
+    
+    return news_list
