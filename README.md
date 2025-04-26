@@ -65,7 +65,3 @@ radar-ibtech/
 ├── Dockerfile           # Configuração Docker
 └── README.md           # Documentação
 ```
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. 
