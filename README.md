@@ -1,20 +1,19 @@
-# 🌎 Radar de Notícias sobre Sustentabilidade
+# 🌎 Radar Notícias IBtech
 
-Um aplicativo web que coleta e exibe notícias sobre sustentabilidade, meio ambiente e ODS de diferentes fontes.
+Um aplicativo web que coleta e exibe notícias sobre sustentabilidade e meio ambiente de diferentes fontes.
 
-## 🛠️ Tecnologias Utilizadas
+## ✨ Funcionalidades
 
-- Python + Flask
-- BeautifulSoup + Requests
-- Docker
-- HTML/CSS/JavaScript
+- 📰 Coleta notícias de G1, UOL e Folha
+- 🔍 Filtros por fonte e categoria
+- 📱 Interface responsiva e moderna
 
-## 📋 Funcionalidades
+## 🛠️ Tecnologias
 
-- Coleta de notícias de múltiplas fontes (G1, UOL, Folha)
-- Filtros por fonte e categoria
-- Exibição de imagens e descrições
-- Interface responsiva e moderna
+- 🐍 Python + Flask
+- 🌐 HTML/CSS/JavaScript
+- 🐳 Docker
+- 🔄 BeautifulSoup + Requests
 
 ## 🚀 Como Executar
 
@@ -22,46 +21,49 @@ Um aplicativo web que coleta e exibe notícias sobre sustentabilidade, meio ambi
 
 ```bash
 # Construir a imagem
-docker build -t radar-ibtech .
+docker build -t radar-noticias-ibtech .
 
 # Executar o container
-docker run -p 5000:5000 radar-ibtech
+docker run -p 5000:5000 radar-noticias-ibtech
 ```
 
-### 2. Localmente
+### Com Python Local
 
 ```bash
-# Criar ambiente virtual
+# Criar e ativar ambiente virtual
 python -m venv venv
+.\venv\Scripts\activate  # Windows
+source venv/bin/activate  # Linux/Mac
 
-# Ativar ambiente virtual
-# Windows:
-.\venv\Scripts\activate
-# Linux/Mac:
-source venv/bin/activate
-
-# Instalar dependências
+# Instalar dependências e executar
 pip install -r requirements.txt
-
-# Executar aplicação
-python app.py
+python run.py
 ```
 
 Acesse: http://localhost:5000
 
-## 📝 Estrutura do Projeto
+## 📁 Estrutura
 
 ```
-radar-ibtech/
-│
+radar-noticias-ibtech/
 ├── app/
-│   ├── __init__.py       # Inicializador do Flask App
-│   ├── routes.py         # Rotas e lógica
-│   ├── scraper.py        # Funções de scraping
-│   ├── templates/        # Templates HTML
-│   └── static/          # Arquivos estáticos
-│
-├── requirements.txt      # Dependências
-├── Dockerfile           # Configuração Docker
-└── README.md           # Documentação
+│   ├── __init__.py     # Inicialização da aplicação
+│   ├── routes/         # Rotas da aplicação
+│   │   ├── __init__.py
+│   │   └── routes.py
+│   ├── scraper/        # Funções de scraping
+│   │   ├── __init__.py
+│   │   └── scraper.py
+│   ├── static/         # CSS e recursos
+│   │   └── style.css
+│   └── templates/      # HTML
+│       └── index.html
+├── run.py              # Script de execução
+├── requirements.txt    # Dependências
+├── Dockerfile          # Configuração Docker
+└── .dockerignore       # Arquivos ignorados pelo Docker
 ```
+
+---
+
+💻 Desenvolvido para IBtech | 2025
